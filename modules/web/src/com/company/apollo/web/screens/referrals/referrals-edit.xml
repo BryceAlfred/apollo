@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="com.company.apollo.web.screens.referrals">
+    <data>
+        <instance id="referralsDc"
+                  class="com.company.apollo.entity.Referrals"
+                  view="_local">
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="referralsDc">
+            <column width="250px">
+                <textField id="prospectReferralField" property="prospectReferral"/>
+                <textField id="referralCompanyPersonField" property="referralCompanyPerson"/>
+                <dateField id="prospectreferralDateField" property="prospectreferralDate"/>
+                <textField id="referralAddressField" property="referralAddress"/>
+                <textField id="referralCityField" property="referralCity"/>
+                <textField id="referralStateField" property="referralState"/>
+                <textField id="referralZipField" property="referralZip"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

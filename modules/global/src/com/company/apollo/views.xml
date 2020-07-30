@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
+
+    <view entity="apollo_Prospects" name="prospects-view" extends="_local">
+        <property name="contactsTable" view="_minimal">
+            <property name="address"/>
+            <property name="email"/>
+            <property name="phone"/>
+        </property>
+    </view>
+</views>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="com.company.apollo.web.screens.activitytable">
+    <data>
+        <instance id="activityTableDc"
+                  class="com.company.apollo.entity.ActivityTable"
+                  view="_local">
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="activityTableDc">
+            <column width="250px">
+                <hbox spacing="true" width="650px">
+                    <groupBox spacing="true" height="auto" width="300px">
+                        <lookupField id="openClosedEnumField" dataContainer="activityTableDc" property="openClosedEnum"
+                                     caption="Open/Closed"/>
+                        <dateField id="dateActivityField" dataContainer="activityTableDc" property="dateActivity"
+                                   caption="Activity Date"/>
+                        <lookupField id="activitytypeEnumField" dataContainer="activityTableDc" property="activitytypeEnum"
+                                     caption="Activity Type"/>
+                        <textField id="notesField" dataContainer="activityTableDc" property="notes" caption="Notes"/>
+                    </groupBox>
+                    <groupBox spacing="true" width="300px" align="TOP_RIGHT">
+                        <dateField id="completedDateField" dataContainer="activityTableDc" property="completedDate"
+                                   caption="Completed Date"/>
+                        <lookupField id="nextstepField" dataContainer="activityTableDc" property="nextstep"
+                                     caption="Next Step"/>
+                        <textField id="nOtesField" dataContainer="activityTableDc" property="nOtes" caption="Notes"/>
+                    </groupBox>
+                </hbox>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

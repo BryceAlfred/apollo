@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="com.company.apollo.web.screens.prospects">
+    <data>
+        <instance id="prospectsDc"
+                  class="com.company.apollo.entity.Prospects"
+                  view="prospects-view">
+                  <collection id="contactsTablesDc" property="contactsTable" />
+            <loader/>
+        </instance>
+        <collection id="activityTablesDc" class="com.company.apollo.entity.ActivityTable">
+            <view extends="_local"/>
+            <loader id="activityTablesDl">
+                <query>
+                    <![CDATA[select e from apollo_ActivityTable e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="contactsTablesDc" class="com.company.apollo.entity.ContactsTable">
+            <view extends="_local"/>
+            <loader id="contactsTablesDl">
+                <query>
+                    <![CDATA[select e from apollo_ContactsTable e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="prospectsDc">
+            <column width="250px">
+                <textField id="prospectField" property="prospect"/>
+                <textField id="dateField" property="address"/>
+                <textField id="cityField" property="city"/>
+                <textField id="stateField" property="state"/>
+                <textField id="zipField" property="zip"/>
+                <dateField id="originalprospectDateField" property="originalprospectDate"/>
+                <lookupField id="howObtainedEnumField" property="howObtainedEnum"/>
+                <textField id="whatEventField" property="whatEvent"/>
+                <textField id="howObtainedNotesField" property="howObtainedNotes" width="800"/>
+                <lookupField id="wjempEnumField" property="wjempEnum"/>
+                <lookupField id="productEnumField" property="productEnum"/>
+                <lookupField id="defconEnumField" property="defconEnum"/>
+                <textField id="estrevenueField" property="estrevenue"/>
+                <hbox spacing="true" width="auto" height="auto">
+                    <lookupField id="outcomeEnumField" dataContainer="prospectsDc" property="outcomeEnum" caption="Client Outcome"/>
+                    <textField id="vpmIDField" dataContainer="prospectsDc" property="vpmID" caption="VPM Client ID"
+                    />
+                </hbox>
+                <checkBox id="followUpField" property="followUp"/>
+                <table id="contactsTablesTable" height="225px" width="800px" dataContainer="contactsTablesDc"
+                            caption="Contacts">
+                    <actions>
+                        <action id="create" type="create"/>
+                        <action id="edit" type="edit"/>
+                        <action id="remove" type="remove"/>
+                    </actions>
+                    <buttonsPanel alwaysVisible="true">
+                        <button id="contactsTablesTableCreateBtn" action="contactsTablesTable.create"/>
+                        <button id="contactsTablesTableEditBtn" action="contactsTablesTable.edit"/>
+                        <button id="contactsTablesTableRemoveBtn" action="contactsTablesTable.remove"/>
+                    </buttonsPanel>
+                    <columns>
+                        <column id="name"/>
+                        <column id="email"/>
+                        <column id="phone"/>
+                        <column id="address"/>
+                    </columns>
+                </table>
+                <groupTable id="activityTablesTable" height="225px" width="800px" dataContainer="activityTablesDc"
+                            caption="Activities">
+                    <actions>
+                        <action id="create" type="create"/>
+                        <action id="edit" type="edit"/>
+                        <action id="remove" type="remove"/>
+                    </actions>
+                    <buttonsPanel alwaysVisible="true">
+                        <button id="activityTablesTableCreateBtn" action="activityTablesTable.create"/>
+                        <button id="activityTablesTableEditBtn" action="activityTablesTable.edit"/>
+                        <button id="activityTablesTableRemoveBtn" action="activityTablesTable.remove"/>
+                    </buttonsPanel>
+                    <columns>
+                        <column id="openClosedEnum"/>
+                        <column id="dateActivity"/>
+                        <column id="activitytypeEnum"/>
+                        <column id="nextstep"/>
+                    </columns>
+                </groupTable>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

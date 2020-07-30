@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://browseCaption"
+        focusComponent="prospectsTable"
+        messagesPack="com.company.apollo.web.screens.prospects">
+    <data readOnly="true">
+        <collection id="prospectsDc"
+                    class="com.company.apollo.entity.Prospects"
+                    view="_local">
+            <loader id="prospectsDl">
+                <query>
+                    <![CDATA[select e from apollo_Prospects e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="prospectsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="prospectsTable"
+                dataLoader="prospectsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="prospectsTable"
+                    width="100%"
+                    dataContainer="prospectsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="prospect"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="prospectsTable.create"/>
+                <button id="editBtn" action="prospectsTable.edit"/>
+                <button id="removeBtn" action="prospectsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

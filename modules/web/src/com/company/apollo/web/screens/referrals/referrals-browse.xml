@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://browseCaption"
+        focusComponent="referralsesTable"
+        messagesPack="com.company.apollo.web.screens.referrals">
+    <data readOnly="true">
+        <collection id="referralsesDc"
+                    class="com.company.apollo.entity.Referrals"
+                    view="_local">
+            <loader id="referralsesDl">
+                <query>
+                    <![CDATA[select e from apollo_Referrals e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="referralsesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="referralsesTable"
+                dataLoader="referralsesDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="referralsesTable"
+                    width="100%"
+                    dataContainer="referralsesDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="prospectReferral"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="referralsesTable.create"/>
+                <button id="editBtn" action="referralsesTable.edit"/>
+                <button id="removeBtn" action="referralsesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

@@ -1,0 +1,1 @@
+alter table APOLLO_ACTIVITY_TABLE alter column PRODUCT_ENUM rename to PRODUCT_ENUM__U63795 ^
